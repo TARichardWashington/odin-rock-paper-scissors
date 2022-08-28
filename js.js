@@ -43,18 +43,47 @@ function playRoundTest() {
     }
 }
 
-function game() {
-    for(let i = 0; i < 5; i++) {
-        console.log(playRoundTest());
-        console.log(getComputerChoiceTest());
+// console.log(playRoundTest());
+// console.log(getComputerChoiceTest());
 
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+
+    for(let i = 0; i < 5; i++) {
+        let round = i + 1;
+        console.log('Round ' + round);
         let compChoice = getComputerChoice();
-        let playerChoice = prompt();
+
+        let playerChoice = '';
+
+        while(playerChoice != 'rock' && playerChoice != 'paper' && playerChoice != 'scissors') {
+            playerChoice = prompt('Enter your choice of rock, paper, scissors.');
+        }
 
         console.log('The computer chose ' + compChoice);
         console.log('The player chose ' + playerChoice);
 
-        console.log(playRound(playerChoice, compChoice));
+        let result = playRound(playerChoice, compChoice)
+        
+        if(result === 'You win')
+        {
+            playerScore++;
+        } else if(result === 'You lose') {
+            computerScore++;
+        } else {
+            // No one gets a point :(
+        }
+
+        console.log(result);
+    }
+
+    if(playerScore > computerScore) {
+        console.log('Final result: you won! ' + playerScore + ' | ' + computerScore);
+    } else if (playerScore < computerScore) {
+        console.log('Final result: the computer won ' + playerScore + ' | ' + computerScore);
+    } else {
+        console.log('Final result: a draw' + playerScore + ' | ' + computerScore);
     }
 }
 
