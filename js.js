@@ -43,16 +43,24 @@ function playRoundTest() {
     }
 }
 
-console.log(playRoundTest());
-console.log(getComputerChoiceTest());
+function game() {
+    for(let i = 0; i < 5; i++) {
+        console.log(playRoundTest());
+        console.log(getComputerChoiceTest());
 
-let compChoice = getComputerChoice();
-let playerChoice = prompt();
+        let compChoice = getComputerChoice();
+        let playerChoice = prompt();
 
-console.log('The computer chose ' + compChoice);
-console.log('The player chose ' + playerChoice);
+        console.log('The computer chose ' + compChoice);
+        console.log('The player chose ' + playerChoice);
 
-console.log(playRound(playerChoice, compChoice));
+        console.log(playRound(playerChoice, compChoice));
+    }
+}
+
+game();
+
+
 
 
 
