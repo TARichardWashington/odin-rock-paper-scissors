@@ -88,7 +88,7 @@ function game() {
 
 
 
-            if(finalResult.innerText == 5 || computerScore.innerText == 5) {
+            if(humanScore.innerText == 5 || computerScore.innerText == 5) {
                 finalResult.innerText = humanScore.innerText > computerScore.innerText ? 'Winner!' : (humanScore.innerText < computerScore.innerText ? 'Loser!': 'Draw');
 
             }
