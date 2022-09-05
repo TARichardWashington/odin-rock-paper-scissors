@@ -5,9 +5,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Odin Project - Rock Paper Scissors</title>
-        <script src="js.js"></script>
+        <link rel="stylesheet" href="styles.css">
         </head>
     <body>
-   
+        <div class="container">
+            <h2>Choose your weapon</h2>
+            <div class="weapons">
+                <div class="weapon"><img src="rock.jpg" alt="rock"></div>
+                <div class="weapon"><img src="paper.jpg" alt="paper"></div>
+                <div class="weapon"><img src="scissors.jpg" alt="scissors"></div>
+            </div>
+            <p><span id="humanChoice"></span><br><span id="computerChoice"></span></p>
+            <h3>Round result: <span id="result">No weapon selected</span></h3>
+            <h3>Score <span id="yourScore">0</span> <span id="computerScore">0</span></h3>
+            <h3>Final result <span id="finalResult">undecided...</span></h3>
+        </div>
+        <script src="js.js"></script>
     </body>
 </html>

@@ -14,8 +14,9 @@ function getComputerChoiceTest() {
 }
 
 function playRound(playerChoice, compChoice) {
+
     if(playerChoice === 'rock' && compChoice === 'scissors') {
-        return 'You win';
+        return 'You win!';
     } else if(playerChoice === 'rock' && compChoice === 'paper') {
         return 'You lose';
     } else if(playerChoice === 'paper' && compChoice === 'rock') {
@@ -47,44 +48,55 @@ function playRoundTest() {
 // console.log(getComputerChoiceTest());
 
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
 
-    for(let i = 0; i < 5; i++) {
-        let round = i + 1;
-        console.log('Round ' + round);
-        let compChoice = getComputerChoice();
+    let computerChoice = null;
+    let humanChoice = null;
 
-        let playerChoice = '';
+    let weapons = document.querySelectorAll('.weapon');
 
-        while(playerChoice != 'rock' && playerChoice != 'paper' && playerChoice != 'scissors') {
-            playerChoice = prompt('Enter your choice of rock, paper, scissors.');
-        }
+    let result = document.querySelector('#result');
 
-        console.log('The computer chose ' + compChoice);
-        console.log('The player chose ' + playerChoice);
+    let humanScore = document.querySelector('#yourScore');
+    let computerScore = document.querySelector('#computerScore');
 
-        let result = playRound(playerChoice, compChoice)
-        
-        if(result === 'You win')
-        {
-            playerScore++;
-        } else if(result === 'You lose') {
-            computerScore++;
-        } else {
-            // No one gets a point :(
-        }
+    let rounds = 0;
 
-        console.log(result);
-    }
+    let finalResult = document.querySelector('#finalResult');
+    
+    weapons.forEach(function(weapon) {
+        weapon.addEventListener('click', function() {
+            computerChoice = getComputerChoice();
 
-    if(playerScore > computerScore) {
-        console.log('Final result: you won! ' + playerScore + ' | ' + computerScore);
-    } else if (playerScore < computerScore) {
-        console.log('Final result: the computer won ' + playerScore + ' | ' + computerScore);
-    } else {
-        console.log('Final result: a draw' + playerScore + ' | ' + computerScore);
-    }
+            domComputerText = document.querySelector("#computerChoice");
+            domComputerText.innerText = 'The computer chose ' + computerChoice;
+
+            humanChoice = this.firstChild.alt.toLowerCase();
+
+            domHumanText = document.querySelector("#humanChoice");
+            domHumanText.innerText = 'The human chose ' + humanChoice;
+
+            let winner = playRound(humanChoice, computerChoice)
+            result.innerText = winner;
+
+            if(winner === 'You win!') {
+                humanScore.innerText = ++(humanScore.innerText);
+            } else if(winner === 'You lose') {
+                computerScore.innerText = ++(computerScore.innerText);
+            }
+
+            rounds = ++rounds;
+
+
+
+            if(finalResult.innerText == 5 || computerScore.innerText == 5) {
+                finalResult.innerText = humanScore.innerText > computerScore.innerText ? 'Winner!' : (humanScore.innerText < computerScore.innerText ? 'Loser!': 'Draw');
+
+            }
+            
+        });
+
+       
+    });
 }
 
 game();
